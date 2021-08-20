@@ -62,7 +62,11 @@ module.exports = (env, argv) => {
               presets: ['@babel/preset-env']
             }
           }
-        }
+        },
+        {
+          test: /\.(wav|mp3)$/i,
+          loader: 'file-loader'
+        },
       ],
     }
   }
