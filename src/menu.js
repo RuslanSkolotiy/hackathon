@@ -12,6 +12,11 @@ export class ContextMenu extends Menu {
     }
 
     open({ x, y }) {
+        let maxX = document.body.clientWidth - this.el.clientWidth
+        let maxY = document.body.clientHeight - this.el.clientHeight
+        if (x > maxX) x = maxX
+        if (y > maxY) y = maxY
+
         if (!this.#mudules.length) return
         this.el.style.display = "block"
         this.el.style.left = x + "px"
