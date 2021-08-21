@@ -30,8 +30,10 @@ export class ContextMenu extends Menu {
     }
 
     #onContextmenu(event) {
-        event.preventDefault()
-        this.open({ x: event.clientX, y: event.clientY })
+        if (event.target.nodeName === "BODY") {
+            event.preventDefault()
+            this.open({ x: event.clientX, y: event.clientY })
+        }
     }
 
     #onItemClick(event) {
