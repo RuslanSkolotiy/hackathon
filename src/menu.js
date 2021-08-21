@@ -1,6 +1,6 @@
 import { Menu } from "./core/menu"
 import { Module } from "./core/module"
-import { createElementsByHtml } from "./utils"
+import { createElementByHtml } from "./utils"
 
 export class ContextMenu extends Menu {
     #mudules = []
@@ -26,7 +26,7 @@ export class ContextMenu extends Menu {
         if (!(module instanceof Module))
             throw new Error(`module must instanceof Module`)
         this.#mudules.push(module)
-        this.el.append(...createElementsByHtml(module.toHTML()))
+        this.el.append(createElementByHtml(module.toHTML()))
     }
 
     #onContextmenu(event) {
