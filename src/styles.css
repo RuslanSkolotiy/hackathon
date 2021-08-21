@@ -43,8 +43,18 @@ body {
 }
 
 .figure {
-    background: linear-gradient(90deg, #16D9E3 0%, #30C7EC 47%, #46AEF7 100%);
+    background: linear-gradient(90deg, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
     position: absolute;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.counter__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: gray;
 }
