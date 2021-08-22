@@ -2,7 +2,6 @@ import {Module} from '../core/module'
 import { MessageOne } from './message/messageOne'
 
 export class MessageModule extends Module {
-
     #body
 
     constructor(type, text) {
