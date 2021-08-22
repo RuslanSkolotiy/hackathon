@@ -39,6 +39,7 @@ export class TimerModule extends Module {
 
 			if (e.target.closest('#start')) {
 				if ( input.value > 0 ) {
+					this.#checkTimer()
 					this.#timer = input.value
 					this.#removeElementToHtml(this.#modalElStart, modalStart)
 					this.#timerControl()
@@ -86,6 +87,14 @@ export class TimerModule extends Module {
 		setTimeout( () => {
 				this.#removeElementToHtml(this.#modalElFinish, modalFinish)
 		}, 2000)
+	}
+
+	#checkTimer() {
+		if (document.querySelector('.card')) {
+			clearInterval(this.#timerId)
+			this.#removeElementToHtml(document.querySelector('.card'))
+			this.#timer = null
+		}
 	}
 
 	#getTime(time) {
