@@ -2,40 +2,68 @@ import { Module } from "../core/module"
 
 export class ClicksModule extends Module {
     #body
-    #counter
+    #counter = 0
+    #doubleCounter = 0
     #time
+
+    #onClick
+    #onDoubleClick
+
+    #el
+
     constructor(type, text) {
         super(type, text)
-        this.#counter = 0
-        this.#time = 5
+    
         this.#body = document.querySelector("body")
+
+        this.#onClick = (() => {
+            this.#counter++
+        }).bind(this)
+
+        this.#onDoubleClick = (() => {
+            this.#doubleCounter++
+        }).bind(this)
+
+        let div = document.createElement("div")
+        div.className = "counter__container"
+       
+        this.#el = div
+        this.#body.append(div)
     }
 
     trigger(event) {
+        this.reset()
+        this.#el.innerHTML = `Let's click!`
         this.clickCounter()
+    }
+
+    reset() {
+        this.#counter = 0
+        this.#doubleCounter = 0
+        this.#time = 5
     }
 
     clickCounter() {
         let timer = setInterval(() => {
             if (this.#time > 0) {
-                div2.innerHTML = this.#time
+                this.#el.innerHTML = this.#time
             } else {
-                div2.innerHTML = `Количество кликов: ${this.#counter}`
-                clearTimeout(timer)
+                this.#el.innerHTML = `Количество кликов <br>
+                одинарных: ${this.#counter}<br>
+                двойных: ${this.#doubleCounter}`
+
+                clearInterval(timer)
+                window.removeEventListener("click", this.#onClick)
+                window.removeEventListener("dblclick", this.#onDoubleClick)
             }
             --this.#time
         }, 1000)
 
-        window.addEventListener("click", () => {
-            return this.#counter++
-        })
-        window.addEventListener("dblclick", () => {
-            return (this.#counter = this.#counter + 1 - 2)
-        })
+        setTimeout(() => {
+            window.addEventListener("click", this.#onClick)
+            window.addEventListener("dblclick", this.#onDoubleClick)
+        }, 0)
 
-        let div2 = document.createElement("div")
-        div2.className = "counter__container"
-        div2.innerHTML = `Let's click!`
-        this.#body.append(div2)
+        
     }
 }
