@@ -15,8 +15,7 @@ export class MessageComponent {
         this.$div.role = 'alert'
         this.newColorBlock(`${ColorClassList[Math.round(random(0,ColorClassList.length - 1))]}`)
         this.$div.style.display = 'inline-block'
-        this.$div.position = 'relative' //'absolute' //'relative'
-        //this.$div.zIndex = `${MessageComponent.count * 2}`
+        this.$div.position = 'relative'
 
         this.$div.style.top = '0px'
         this.$div.style.left = '0px'
@@ -27,7 +26,6 @@ export class MessageComponent {
         MessageComponent.count++
 
         this.newTime(4000)
-        console.log('this.time', this.time)
     }
 
     newColorBlock(className) {
@@ -36,10 +34,8 @@ export class MessageComponent {
 
     newTime(time) {
         this.time = setTimeout(() => {
-
             this.$el.remove()
             MessageComponent.count--
-            console.log('MessageComponent.count', MessageComponent.count)
         },time)
 
     }

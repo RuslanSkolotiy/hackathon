@@ -1,12 +1,15 @@
 import { Box } from './box'
 import { Oval } from './oval'
 import { Circle } from './circle'
+import { Trapeziod } from './trapeziod'
 
 export class Figuras {
     static list = [
          Box,
          Oval,
-         Circle
+         Circle,
+         Trapeziod,
+
     ]
 
     create(body,option, type = 0) {
