@@ -14,6 +14,17 @@ export class ContextMenu extends Menu {
     open({ x, y }) {
         if (!this.#mudules.length) return
         this.el.style.display = "block"
+
+        let maxX =
+            document.body.getBoundingClientRect().width -
+            this.el.getBoundingClientRect().width
+        let maxY =
+            document.body.getBoundingClientRect().height -
+            this.el.getBoundingClientRect().height
+
+        if (x > maxX) x = maxX
+        if (y > maxY) y = maxY
+
         this.el.style.left = x + "px"
         this.el.style.top = y + "px"
     }
