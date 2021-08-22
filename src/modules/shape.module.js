@@ -1,6 +1,6 @@
 import {Module} from '../core/module'
-import { random } from "../utils"
-import { Box } from './shape/box'
+import { random } from '../utils'
+import { Figuras } from './shape/figuras'
 
 export class ShapeModule extends Module {
     #body
@@ -16,12 +16,17 @@ export class ShapeModule extends Module {
         const x = random(0, width - randomPequeno)
         const y = random(0, height - randomPequeno)
 
-        const box = new Box(this.#body,{
+
+        const shape = new Figuras()
+        const typeShape = Math.round(random(0, Figuras.list.length - 1))
+
+        shape.create(this.#body, {
             selector: 'figure',
             size: randomPequeno,
             top: y,
             left: x
-        } )
+        }, typeShape)
+
     }
 
     trigger(event) {
