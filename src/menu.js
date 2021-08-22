@@ -4,10 +4,13 @@ import { createElementByHtml } from "./utils"
 
 export class ContextMenu extends Menu {
     #mudules = []
+    #touchTimer
 
     constructor(selector) {
         super(selector)
         document.addEventListener("contextmenu", this.#onContextmenu.bind(this))
+        document.addEventListener("touchstart", this.#onTouchstart.bind(this))
+        document.addEventListener("touchend", this.#onTouchend.bind(this))
         this.el.addEventListener("click", this.#onItemClick.bind(this))
     }
 
@@ -55,5 +58,19 @@ export class ContextMenu extends Menu {
             })
             .trigger(event)
         this.close()
+    }
+
+    #onTouchstart(event) {
+        if (event.target.nodeName === "BODY") {
+            let clientX = event.touches[0].clientX
+            let clientY = event.touches[0].clientY
+            this.#touchTimer = setTimeout(() => {
+                this.open({ x: clientX, y: clientY })
+            }, 1000)
+        }
+    }
+
+    #onTouchend(event) {
+        clearTimeout(this.#touchTimer)
     }
 }
