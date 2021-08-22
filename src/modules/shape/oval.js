@@ -11,9 +11,3 @@ export class Oval extends Component {
         this.$el.style.left = option.left + 'px'
     }
 }
-
-//
-// width: 200px;
-// height: 100px;
-// background: #9CD6C0;
-// border-radius: 100px/50px;

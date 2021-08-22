@@ -12,8 +12,6 @@ export class ContextMenu extends Menu {
     }
 
     open({ x, y }) {
-        console.log('this.el', this.el)
-
         if (!this.#mudules.length) return
         this.el.style.display = "block"
         this.el.style.left = x + "px"
